@@ -2,8 +2,8 @@
   <h4>Movie Search</h4>
   <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
   <div>
-    <div *ngFor="let movie of movies | async" class="search-result" >
-      {{movie.title}}
+    <div *ngFor="let movie of movies" class="search-result" >
+       {{movie.title}}
     </div>
   </div>
 </div>

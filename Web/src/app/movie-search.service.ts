@@ -14,9 +14,12 @@ export class MovieSearchService {
 
   constructor(private http: Http) {}
 
-  search(term: string): Observable<Movie[]> {
+  search(term: string): Observable<any> {
     return this.http
-               .get(`http://localhost:9000/api/movies/search/${term}`)
-               .map(response => response.json().data as Movie[]);
+               .get(`http://localhost:9000/api/movies/search/:${term}`)
+               .map(response => { 
+               	
+               	return response.json()
+               });
   }
 }

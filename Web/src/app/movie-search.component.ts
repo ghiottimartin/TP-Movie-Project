@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router }            from '@angular/router';
 
 import { Observable }        from 'rxjs/Observable';
 import { Subject }           from 'rxjs/Subject';
@@ -23,20 +22,22 @@ import { Movie } from './movie';
   providers: [MovieSearchService]
 })
 export class MovieSearchComponent implements OnInit {
-  movies: Observable<Movie[]>;
+  movies: any;
   private searchTerms = new Subject<string>();
 
   constructor(
-    private movieSearchService: MovieSearchService,
-    private router: Router) {}
+    private movieSearchService: MovieSearchService) {}
 
   // Push a search term into the observable stream.
   search(term: string): void {
-    this.searchTerms.next(term);
+    //this.searchTerms.next(term);
+    this.movieSearchService.search(term).subscribe(movies =>{ 
+      console.log(movies);
+      this.movies = movies.results});
   }
 
   ngOnInit(): void {
-    this.movies = this.searchTerms
+    this.searchTerms
       .debounceTime(300)        // wait 300ms after each keystroke before considering the term
       .distinctUntilChanged()   // ignore if next search term is same as previous
       .switchMap(term => term   // switch to new observable each time the term changes
