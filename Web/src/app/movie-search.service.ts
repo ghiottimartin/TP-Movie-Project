@@ -16,10 +16,17 @@ export class MovieSearchService {
 
   search(term: string): Observable<any> {
     return this.http
-               .get(`http://localhost:9000/api/movies/search/:${term}`)
-               .map(response => { 
-               	
+               .get(`http://localhost:9000/api/movies/search/${term}`)
+               .map(response => {                	
                	return response.json()
                });
+  }
+
+  getbyID(id: string): Observable<any> {
+    return this.http
+               .get(`http://localhost:9000/api/movies/info/${id}`)
+               .map(response => {
+                 return response.json()
+               })
   }
 }
