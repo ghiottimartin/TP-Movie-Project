@@ -14,9 +14,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   id: any;
   private sub: any;
   movie: any;
-  vote: any;
-  confirmacion: any;
-  votaste: boolean;
+  year: string;
 
 
   constructor(
@@ -27,26 +25,15 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
     	this.sub = this.route.params.subscribe(params => {
        this.id = +params['id']; // (+) converts string 'id' to a number 
        this.movieSearchService.getbyID(this.id).subscribe(movie =>
-        this.movie = movie
+        {this.movie = movie;
+        this.year = movie.release_date.substring(0,4);}
         );
+
     	});
-      this.votaste = false;
  
 	}
 
 	ngOnDestroy() {
     	this.sub.unsubscribe();
   	}
-
-  voteMovie(vote: any) {
-    if(this.votaste) {
-      this.confirmacion = "Ya votaste.";
-    }
-    else {
-      
-      this.confirmacion = "Has votado!";
-      this.votaste = true;
-      this.movieSearchService.voteMovie(this.id, vote);      
-    }
-  }
 }

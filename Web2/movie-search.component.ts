@@ -4,7 +4,7 @@ import { Observable }        from 'rxjs/Observable';
 import { Subject }           from 'rxjs/Subject';
 
 // Observable class extensions
-import 'rxjs/add/observable/of'; 
+import 'rxjs/add/observable/of';
 
 // Observable operators
 import 'rxjs/add/operator/catch';
@@ -31,7 +31,7 @@ export class MovieSearchComponent implements OnInit {
   // Push a search term into the observable stream.
   search(term: string): void {
     //this.searchTerms.next(term);
-    this.movieSearchService.search(term).subscribe(movies =>{
+    this.movieSearchService.search(term).subscribe(movies =>{ 
       console.log(movies);
       this.movies = movies.results});
   }

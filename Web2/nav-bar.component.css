@@ -1,0 +1,32 @@
+.bg-dark {
+    background-color: #343a40!important;
+}
+
+.escape-hatch {
+	color: #28a745;
+	font-weight: bold;
+	font-size: 250%;
+	padding-left: 20px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	position: relative;
+    float: left;
+}
+
+
+a:link   
+{   
+ text-decoration:none;   
+} 
+
+
+.derecha {
+	position: relative;
+	float: right;
+	padding-right: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+
+

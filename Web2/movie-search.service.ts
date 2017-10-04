@@ -3,6 +3,7 @@ import { Http }       from '@angular/http';
 
 import { Observable }     from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/Rx';
 
 import { Movie }           from './movie';
 import { MovieService } from './movie.service';
@@ -11,6 +12,7 @@ import { MovieService } from './movie.service';
 export class MovieSearchService {
 	private movies: Observable<Movie[]>;
 	private movieService: MovieService;
+  private topMovies: any;
 
   constructor(private http: Http) {}
 
@@ -30,8 +32,12 @@ export class MovieSearchService {
                })
   }
 
-  voteMovie(id: number, vote: number) {
-    this.http.post(`http://localhost:9000/api/movie/{id}/rating`,{vote})
-      .subscribe( res => console.log(res))  
-  }
+  /*getTopThreeMovies(): number[] {
+    this.topMovies = this.http
+        .get(`http://localhost:9000/api/movies`)
+        .map( response => response.json());
+
+    //Falta filtrar el json para las 3 peliculas mas recientes
+    return;    
+  } */
 }
