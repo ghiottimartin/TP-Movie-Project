@@ -24,6 +24,7 @@ import { Movie } from './movie';
 export class MovieSearchComponent implements OnInit {
   movies: any;
   private searchTerms = new Subject<string>();
+  show: boolean;
 
   constructor(
     private movieSearchService: MovieSearchService) {}
@@ -34,6 +35,7 @@ export class MovieSearchComponent implements OnInit {
     this.movieSearchService.search(term).subscribe(movies =>{
       console.log(movies);
       this.movies = movies.results});
+    this.show = true;
   }
 
   ngOnInit(): void {
@@ -50,5 +52,14 @@ export class MovieSearchComponent implements OnInit {
         console.log(error);
         return Observable.of<Movie[]>([]);
       });
+  }
+
+  hideSearch(): void{
+    if(this.show){
+      this.show = false;
+    }
+    else {
+      this.show = true;
+    }
   }
 }

@@ -6,3 +6,7 @@
 #movie-info {
 	/*position: fixed;*/
 }
+
+.col-md-3 {
+	position:initial;
+}
