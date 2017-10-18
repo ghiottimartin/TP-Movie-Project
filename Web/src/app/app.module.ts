@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -26,10 +26,11 @@ import { HomeComponent } from './home.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpModule,
     AppRoutingModule,
-    NgbModule.forRoot(),
-    FormsModule
+    NgbModule.forRoot()
+    
     
   ],
   providers: [ 

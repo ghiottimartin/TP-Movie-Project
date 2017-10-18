@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  title = 'Welcome to the TMDB';
+  title = 'Welcome to The Movie Project';
 }

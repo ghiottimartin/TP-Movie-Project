@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { Observable }        from 'rxjs/Observable';
 import { Subject }           from 'rxjs/Subject';
@@ -21,45 +21,17 @@ import { Movie } from './movie';
   styleUrls: [ './movie-search.component.css' ],
   providers: [MovieSearchService]
 })
-export class MovieSearchComponent implements OnInit {
+export class MovieSearchComponent {
   movies: any;
   private searchTerms = new Subject<string>();
-  show: boolean;
 
   constructor(
     private movieSearchService: MovieSearchService) {}
 
   // Push a search term into the observable stream.
   search(term: string): void {
-    //this.searchTerms.next(term);
     this.movieSearchService.search(term).subscribe(movies =>{
       console.log(movies);
       this.movies = movies.results});
-    this.show = true;
-  }
-
-  ngOnInit(): void {
-    this.searchTerms
-      .debounceTime(300)        // wait 300ms after each keystroke before considering the term
-      .distinctUntilChanged()   // ignore if next search term is same as previous
-      .switchMap(term => term   // switch to new observable each time the term changes
-        // return the http search observable
-        ? this.movieSearchService.search(term)
-        // or the observable of empty movies if there was no search term
-        : Observable.of<Movie[]>([]))
-      .catch(error => {
-        // TODO: add real error handling
-        console.log(error);
-        return Observable.of<Movie[]>([]);
-      });
-  }
-
-  hideSearch(): void{
-    if(this.show){
-      this.show = false;
-    }
-    else {
-      this.show = true;
-    }
   }
 }
